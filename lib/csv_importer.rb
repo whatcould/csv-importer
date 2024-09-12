@@ -71,7 +71,8 @@ module CSVImporter
   def rows
     csv.rows.map.with_index(2) do |row_array, line_number|
       Row.new(header: header, line_number: line_number, row_array: row_array, model_klass: config.model,
-              identifiers: config.identifiers, after_build_blocks: config.after_build_blocks)
+              identifiers: config.identifiers, after_build_blocks: config.after_build_blocks,
+              default_values: config.default_values)
     end
   end
 

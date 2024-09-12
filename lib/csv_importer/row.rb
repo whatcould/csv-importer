@@ -12,6 +12,7 @@ module CSVImporter
     attribute :model_klass
     attribute :identifiers # Array[Symbol] or Proc
     attribute :after_build_blocks, Array[Proc], default: []
+    attribute :default_values, Hash, default: {}
     attribute :skip, Virtus::Attribute::Boolean, default: false
 
     # The model to be persisted
@@ -107,7 +108,7 @@ module CSVImporter
     end
 
     def build_model
-      model_klass.new
+      model_klass.new(default_values)
     end
 
     def skip!
